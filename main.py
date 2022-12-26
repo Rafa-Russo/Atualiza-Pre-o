@@ -70,6 +70,20 @@ while not exit == True:
     elif ch == "2":
         new_product = input("Please, enter the location of the file incluiding the file itself: ")
     elif ch == "3":
-        #for linha in "list_products.txt":
-            #print(str(linha+1)+ ". " + list_products.readline())
-        del_product = input("Which of the products should be deleted?")
+        with open("list_products.txt","r+", encoding="utf-8") as list_products:
+            for num, line in enumerate(list_products, 1):
+                print(str(num)+". "+ line)
+            del_product = int(input("Which of the products should be deleted?"))
+            list_products.seek(0)
+            
+            for num, line in enumerate(list_products, 1):
+                if num != del_product:
+                    print(num)
+                    
+                    print(del_product)
+                    
+                    list_products.write(line)
+            list_products.truncate()
+    elif ch == "0":
+        break
+            
